@@ -1,0 +1,31 @@
+CREATE DATABASE expenses_tracker;
+
+USE expenses_tracker;
+
+
+-- Users table
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50) NOT NULL UNIQUE,
+  email VARCHAR(100) UNIQUE,
+  password VARCHAR(255) NOT NULL
+);
+
+-- Expenses table
+CREATE TABLE expenses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    category VARCHAR(50) NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    date DATE NOT NULL,
+    description TEXT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    category_name VARCHAR(100) NOT NULL,
+    UNIQUE KEY unique_user_category (user_id, category_name),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
