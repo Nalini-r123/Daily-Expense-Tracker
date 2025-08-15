@@ -69,11 +69,118 @@ $catQuery->close();
 // Merge defaults + user categories without duplicates
 $categories = array_unique(array_merge($defaultCategories, $userCategories), SORT_REGULAR);
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Add Expense</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            display: flex;
+            background: 
+                linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+                url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1920&q=80')
+                no-repeat center center / cover;
+            background-attachment: fixed;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 240px;
+            background: linear-gradient(180deg, #15a6abff, #15a6abff);
+            color: #fff;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+    .sidebar h3 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: 600;
+        font-size: 20px;
+        color: black; /* Menu title in black */
+    }
+
+    .sidebar a {
+            display: block;
+            padding: 14px 20px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+            font-family: 'Poppins', sans-serif; /* Changed font style */
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+    .sidebar a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-left: 4px solid #ffdd59;
+        padding-left: 24px;
+    }
+
+        /* Main content */
+        .main-content {
+            margin-left: 240px;
+            padding: 40px;
+            flex-grow: 1;
+            color: #fff;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        form {
+            max-width: 500px;
+            background: rgba(0,0,0,0.4);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 8px rgba(0,0,0,0.4);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input, select, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        button {
+            background: #28a745;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            border: none;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+
+        p {
+            font-size: 14px;
+        }
+    </style>
     <script>
         function toggleNewCategoryField() {
             var categorySelect = document.getElementById("category");
@@ -83,7 +190,6 @@ $categories = array_unique(array_merge($defaultCategories, $userCategories), SOR
     </script>
 </head>
 <body>
-<div class="dashboard">
     <div class="sidebar">
         <h3>Menu</h3>
         <a href="dashboard.php">Dashboard</a>
@@ -94,16 +200,14 @@ $categories = array_unique(array_merge($defaultCategories, $userCategories), SOR
     <div class="main-content">
         <h2>Add Expense</h2>
         <?php if (isset($_GET['success'])): ?>
-            <p style="color: green;">Expense added successfully!</p>
+            <p style="color: lightgreen;">Expense added successfully!</p>
         <?php endif; ?>
         <form method="post">
             <label>Category:</label>
             <select id="category" name="category" required onchange="toggleNewCategoryField()">
                 <option value="" disabled selected>-- Select Category --</option>
                 <?php foreach ($categories as $cat): ?>
-                    <option value="<?php echo htmlspecialchars($cat); ?>">
-                        <?php echo htmlspecialchars($cat); ?>
-                    </option>
+                    <option value="<?= htmlspecialchars($cat) ?>"><?= htmlspecialchars($cat) ?></option>
                 <?php endforeach; ?>
                 <option value="Others">Others</option>
             </select>
@@ -125,6 +229,5 @@ $categories = array_unique(array_merge($defaultCategories, $userCategories), SOR
             <button type="submit">Add Expense</button>
         </form>
     </div>
-</div>
 </body>
 </html>

@@ -2,14 +2,18 @@ body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, sans-serif;
     display: flex;
-    background-color: #f8f9fa; /* Light background for contrast */
+    background: 
+        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+        url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1920&q=80')
+        no-repeat center center / cover;
+    background-attachment: fixed; /* Keeps image static on scroll */
 }
 
 /* Sidebar */
 .sidebar {
     width: 240px;
-    background: linear-gradient(180deg, #4a69bd, #1e3799);
-    color: white;
+    background: linear-gradient(180deg, #1979b4, #1979b4);
+    color: rgb(33, 9, 9);
     height: 100vh;
     position: fixed;
     left: 0;
@@ -24,13 +28,14 @@ body {
     font-weight: 600;
     font-size: 20px;
     letter-spacing: 1px;
+    color:black;
 }
 
 .sidebar a {
     display: block;
     padding: 14px 20px;
     text-decoration: none;
-    color: #f1f1f1;
+    color: #0eb0c2;
     font-size: 15px;
     border-left: 4px solid transparent;
     transition: all 0.3s ease;
@@ -47,5 +52,5 @@ body {
     margin-left: 240px;
     padding: 20px;
     flex-grow: 1;
-    color: #333;
+    color: #fff; /* White text for contrast over background */
 }

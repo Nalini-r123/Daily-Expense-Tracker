@@ -38,16 +38,80 @@ $totalQuery->close();
     <title>Dashboard - Daily Expense Tracker</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Dashboard Card Style */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background:
+                linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+                url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1920&q=80')
+                no-repeat center center / cover;
+            display: flex;
+        }
+
+        
+        .sidebar {
+            width: 240px;
+            background: #15a6abff; 
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding-top: 20px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        }   
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+            font-size: 20px;
+            letter-spacing: 1px;
+            color: black; /* Changed to black */
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        .sidebar a {
+            display: block;
+            padding: 14px 20px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+            font-family: 'Poppins', sans-serif; /* Changed font style */
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #ffdd59;
+            padding-left: 24px;
+            font-family: 'Times New Roman', serif; /* Changed font on hover */
+        }
+        /* Main Content */
+        .main-content {
+            margin-left: 240px;
+            padding: 20px;
+            flex-grow: 1;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* Align to top */
+            text-align: center;
+        }
+
+        /* Stat Card */
         .stat-card {
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            background: linear-gradient(135deg, #15a6abff, #15a6abff);
             padding: 20px;
             border-radius: 12px;
             color: white;
             width: 250px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             text-align: center;
-            margin-top: 20px;
+            margin-top: 10px;
         }
         .stat-card h3 {
             margin: 0;
@@ -58,6 +122,7 @@ $totalQuery->close();
             margin: 10px 0 0;
             font-weight: bold;
         }
+
         /* Chatbot Styles */
         #chat-toggle {
             position: fixed;
@@ -81,7 +146,6 @@ $totalQuery->close();
             transform: scale(1.08);
             box-shadow: 0 6px 20px rgba(0,0,0,0.4);
         }
-
         #chat-container {
             position: fixed;
             bottom: 90px;
@@ -121,7 +185,7 @@ $totalQuery->close();
             word-wrap: break-word;
         }
         .user {
-            background: #0078ff;
+            background: #2695b4ff;
             color: white;
             margin-left: auto;
         }
@@ -167,9 +231,6 @@ $totalQuery->close();
 
     <div class="main-content">
         <h1>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
-        <p>This is your dashboard. Use the menu on the left to navigate.</p>
-
-        <!-- Current Month's Total Card -->
         <div class="stat-card">
             <h3>This Month's Total</h3>
             <p>₹<?php echo number_format($currentMonthTotal, 2); ?></p>
@@ -189,7 +250,7 @@ $totalQuery->close();
     </div>
 
     <script>
-        const API_KEY = "YOUR_GOOGLE_API_KEY_HERE"; // Your Gemini API key
+        const API_KEY = "YOUR_GOOGLE_API_KEY_HERE";
         const MODEL = "gemini-1.5-flash";
 
         const toggleBtn = document.getElementById("chat-toggle");

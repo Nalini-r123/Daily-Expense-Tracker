@@ -1,114 +1,109 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome - Expense Tracker</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+  <title>Welcome - Expense Tracker</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      
+      background:
+        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+        url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1920&q=80')
+        no-repeat center center / cover;
 
-        .container {
-            background: #fff;
-            padding: 30px 40px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 20px rgba(0,0,0,0.2);
-            text-align: center;
-            width: 350px;
-        }
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-        h1 {
-            font-size: 1.8em;
-            color: #333;
-            margin-bottom: 10px;
-        }
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      text-align: center;
+      width: 360px;
+      backdrop-filter: saturate(120%) blur(2px);
+      animation: fadeInUp .6s ease;
+    }
 
-        h2 {
-            font-size: 1.3em;
-            color: #444;
-            margin-bottom: 20px;
-        }
+    h1 { font-size: 1.8em; color: #333; margin-bottom: 10px; }
+    h2 { font-size: 1.3em; color: #444; margin-bottom: 20px; }
 
-        label {
-            display: block;
-            text-align: left;
-            font-weight: bold;
-            color: #555;
-            margin-top: 10px;
-        }
+    label {
+      display: block;
+      text-align: left;
+      font-weight: bold;
+      color: #555;
+      margin-top: 10px;
+    }
 
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            outline: none;
-            font-size: 1em;
-            transition: all 0.3s ease;
-        }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      outline: none;
+      font-size: 1em;
+      transition: all 0.2s ease;
+    }
+    input:focus {
+      border-color: #2575fc;
+      box-shadow: 0 0 5px rgba(37,117,252,0.45);
+    }
 
-        input:focus {
-            border-color: #2575fc;
-            box-shadow: 0 0 5px rgba(37,117,252,0.5);
-        }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      background: #2575fc;
+      color: #fff;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background .2s ease, transform .15s ease;
+    }
+    button:hover { background: #1a5fd0; transform: translateY(-1px); }
 
-        button {
-            margin-top: 20px;
-            padding: 10px;
-            width: 100%;
-            background: #2575fc;
-            color: white;
-            font-size: 1.1em;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+    p { margin-top: 15px; font-size: 0.9em; color: #555; }
+    a { color: #2575fc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-        button:hover {
-            background: #1a5fd0;
-        }
+    @keyframes fadeInUp {
+      from { transform: translateY(24px); opacity: 0; }
+      to   { transform: translateY(0);   opacity: 1; }
+    }
 
-        p {
-            margin-top: 15px;
-            font-size: 0.9em;
-        }
-
-        a {
-            color: #2575fc;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    /* Small-screen tweak */
+    @media (max-width: 420px) {
+      .container { width: 90%; padding: 24px; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Welcome to Daily Expense Tracker</h1>
+  <div class="container">
+    <h1>Welcome to Daily Expense Tracker</h1>
 
-        <h2>Login</h2>
-        <form action="login.php" method="POST">
-            <label>Username:</label>
-            <input type="text" name="username" required>
-            
-            <label>Password:</label>
-            <input type="password" name="password" required>
-            
-            <button type="submit">Login</button>
-        </form>
+    <h2>Login</h2>
+    <form action="login.php" method="POST">
+      <label>Username:</label>
+      <input type="text" name="username" required>
 
-        <p>New here? <a href="register.html">Register</a></p>
-    </div>
+      <label>Password:</label>
+      <input type="password" name="password" required>
+
+      <button type="submit">Login</button>
+    </form>
+
+    <p>New here? <a href="register.html">Register</a></p>
+  </div>
 
 </body>
 </html>
